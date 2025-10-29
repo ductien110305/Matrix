@@ -132,6 +132,15 @@ with tab2:
         dh_list.append((d, theta, a, alpha))
 
     if st.button("🧩 Compute DH Matrices"):
+        st.latex(r"""
+        A_i = R_z(\theta_i)T_z(d_i)T_x(a_i)R_x(\alpha_i) =
+        \begin{bmatrix}
+        \cos\theta_i & -\sin\theta_i\cos\alpha_i & \sin\theta_i\sin\alpha_i & a_i\cos\theta_i \\
+        \sin\theta_i & \cos\theta_i\cos\alpha_i & -\cos\theta_i\sin\alpha_i & a_i\sin\theta_i \\
+        0 & \sin\alpha_i & \cos\alpha_i & d_i \\
+        0 & 0 & 0 & 1
+        \end{bmatrix}
+        """)
         T_total = np.eye(4)
         per_link = []
         try:
@@ -148,3 +157,4 @@ with tab2:
             st.write(T_total)
         except Exception as e:
             st.error(f"Lỗi: {e}")
+
